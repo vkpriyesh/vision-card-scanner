@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Card Scanner</title>
+    <style>
+        body { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .upload-form { text-align: center; margin: 50px 0; }
+        .result { margin-top: 20px; }
+        .error { color: red; margin: 10px 0; }
+        .success { color: green; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="upload-form">
+        <h1>Business Card Scanner</h1>
+        <form id="uploadForm" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Analyze Card</button>
+        </form>
+        <div id="status"></div>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const status = document.getElementById('status');
+            const result = document.getElementById('result');
+            
+            try {
+                status.innerHTML = '<p>Analyzing image...</p>';
+                const formData = new FormData(e.target);
+                
+                const response = await fetch('/analyze/', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.error || 'Analysis failed');
+                }
+                
+                status.innerHTML = '<p class="success">Analysis complete!</p>';
+                result.innerHTML = `<pre>${JSON.stringify(data.data, null, 2)}</pre>`;
+                
+            } catch (error) {
+                status.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+                result.innerHTML = '';
+            }
+        });
+    </script>
+</body>
+</html>
