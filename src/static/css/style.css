@@ -1,0 +1,148 @@
+/* Card Scanner Styles */
+.custom-file-upload {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+    background-color: #f8f9fa;
+}
+
+.custom-file-upload.highlight {
+    border-color: #007bff;
+    background-color: #e8f4ff;
+}
+
+.upload-icon {
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+.preview-image {
+    max-height: 150px;
+    object-fit: contain;
+    margin: 0.25rem;
+}
+
+/* Preview image container */
+.preview-image {
+    max-height: 150px;
+    object-fit: contain;
+    margin: 0.25rem;
+}
+
+#results-container {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.contact-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Animation for loading */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Exhibition theme styling */
+body {
+    background-color: #f5f5f5;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card-header {
+    border-bottom: none;
+    padding: 1.25rem;
+}
+
+.btn {
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+}
+
+.btn-lg {
+    padding: 0.75rem 2rem;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Add these styles for better table display */
+.table {
+    width: 100%;
+    margin-bottom: 0;  /* No bottom margin inside responsive container */
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+    white-space: normal;
+    word-break: break-word;
+}
+
+/* Make address cells limit width but show full text on hover */
+.table td:nth-last-child(2) {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Responsive table styling */
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 1rem;
+}
+
+.table thead th {
+    position: sticky;
+    top: 0;
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    background-color: #0d6efd;
+    color: white;
+    z-index: 1;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Checkbox styling */
+.form-check-input {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+/* Tooltip for address */
+[title] {
+    position: relative;
+    cursor: pointer;
+}

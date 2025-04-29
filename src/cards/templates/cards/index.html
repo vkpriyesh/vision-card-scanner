@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0 text-center">Exhibition Contact Scanner</h2>
+                </div>
+                <div class="card-body">
+                    <form id="uploadForm" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <div class="custom-file-upload" id="drop-area">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt fa-3x"></i>
+                                </div>
+                                <p class="lead text-center mb-2">Drag & drop business card images</p>
+                                <p class="text-center text-muted">or</p>
+                                <div class="text-center">
+                                    <label for="fileInput" class="btn btn-outline-primary" id="browse-btn">Browse Files</label>
+                                    <input type="file" id="fileInput" name="images" accept="image/*" multiple class="d-none">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="button" id="submit-btn" class="btn btn-primary">Scan Card</button>
+                        </div>
+                    </form>
+
+                    <!-- Image preview section -->
+                    <div id="preview-container" class="mt-4 d-none">
+                        <h4 class="text-center mb-3">Preview</h4>
+                        <div id="image-preview" class="d-flex flex-wrap justify-content-center"></div>
+                    </div>
+
+                    <!-- Results display section -->
+                    <div id="results-container" class="mt-4 d-none">
+                        <div class="card">
+                            <div class="card-header bg-success text-white">
+                                <h4 class="mb-0">Contact Details</h4>
+                            </div>
+                            <div class="card-body">
+                                <div id="contact-details" class="mb-3">
+                                    <!-- Contact details will be inserted here -->
+                                </div>
+                                <div class="text-center mt-4">
+                                    <button id="download-vcf" class="btn btn-success me-2">
+                                        <i class="fas fa-address-card me-2"></i>Download VCF
+                                    </button>
+                                    <button id="scan-another" class="btn btn-outline-primary">
+                                        <i class="fas fa-redo me-2"></i>Scan Another
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Loading indicator -->
+                    <div id="loading" class="text-center my-4 d-none">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2">Analyzing business card...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/card-scanner.js' %}"></script>
+{% endblock %}
